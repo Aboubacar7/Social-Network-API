@@ -57,9 +57,9 @@ module.exports = {
     async addReactions(req, res) {
         try {
             const thoughtData = Thought.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { reactions: req.params.reactions } })
-                .then(userData => {
-                    res.json(thoughtData)
-                })
+
+            res.json(thoughtData);
+
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
