@@ -14,7 +14,7 @@ module.exports = {
         }
     },
 
-    async getSingleThought(res, req) {
+    async getSingleThought(req, res) {
         try {
             const thoughtData = await Thought.findOne({ _id: req.params.thoughtId })
             res.json(thoughtData);
@@ -24,7 +24,7 @@ module.exports = {
         }
     },
 
-    async createThought(res, req) {
+    async createThought(req, res) {
         try {
             const thoughtData = await Thought.create(req.body)
             res.json(thoughtData);
@@ -34,7 +34,7 @@ module.exports = {
         }
     },
 
-    async updateThought(res, req) {
+    async updateThought(req, res) {
         try {
             const thoughtData = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { runValidators: true, new: true })
             res.json(thoughtData);
@@ -44,10 +44,10 @@ module.exports = {
         }
     },
 
-    async deleteThought(res, req) {
+    async deleteThought(req, res) {
         try {
             const thoughtData = await Thought.findOneAndDelete({ _id: req.params.thoughtId })
-            res.json({ message: "user has been deleted!" })
+            res.json({ message: "Thought has been deleted!" })
         } catch (err) {
             console.log(err)
             res.status(500).json(err);
