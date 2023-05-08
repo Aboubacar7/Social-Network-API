@@ -56,7 +56,7 @@ module.exports = {
 
     async addReactions(req, res) {
         try {
-            const thoughtData = Thought.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { reactions: req.params.reactions } })
+            const thoughtData = await Thought.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { reactions: req.params.reactions } })
 
             res.json(thoughtData);
 
@@ -69,7 +69,7 @@ module.exports = {
     async removeReactions(req, res) {
 
         try {
-            const thoughtData = Thought.findOneAndUpdate({ _id: req.params.userId }, { $pull: { reactions: req.params.reactions } })
+            const thoughtData = await Thought.findOneAndUpdate({ _id: req.params.userId }, { $pull: { reactions: req.params.reactions } })
             res.json(thoughtData)
 
         } catch (err) {
